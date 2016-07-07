@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class PlayZoneAdmin {
     
+    //Metodos de lectura
      public static String leerString(String mensaje)
     {
        Scanner ingreso=new Scanner(System.in);
@@ -12,83 +13,44 @@ public class PlayZoneAdmin {
         String dato=ingreso.nextLine();
         return dato;
     }
+     
     public static int leerInt(String  mensaje, int min, int max){
-        Scanner n= new Scanner(System.in);
-        System.out.println(mensaje);
-        int dato=n.nextInt();
-        if (dato<=max && dato>=min){
-            return dato; 
-            
-        }else
-        System.out.println("Ingrese nuevamente el valor dentro de los parametros establecidos: ");
-        return leerInt(mensaje, max, min);
-           
+        Scanner leer= new Scanner(System.in);
+        int dato;
+        do{
+            System.out.println(mensaje);
+            dato=leer.nextInt();
+        }while(dato>max || dato<min);
+        return dato;
     } 
     
-        public static double leerDouble(String  mensaje, int min, int max){
-        Scanner n= new Scanner(System.in);
-        System.out.println(mensaje);
-        double dato= n.nextDouble();
-        if (dato<=max && dato>=min){
-            return dato;
-        }else
-            System.out.println("Ingrese nuevamente el valor dentro de los parametros establecidos: ");
-        return leerDouble(mensaje, min, max);
+    public static double leerDouble(String  mensaje, int min, int max){
+        Scanner leer= new Scanner(System.in);
+        double dato;
+        do{
+            System.out.println(mensaje);
+            dato=leer.nextDouble();
+        }while(dato>max || dato<min);
+        return dato;
     } 
-//        
-//    public static double leerDouble(String  mensaje){
-//        Scanner n= new Scanner(System.in);
-//        System.out.println(mensaje);
-//        double dato=n.nextInt();
-//        return dato;
-//    }
+    //Fin Metodos de lectura
+    
+
     public static int menuAdmin()
     {
         //Menu de administrador para agregar juegos.
-        Scanner ingreso=new Scanner(System.in);
         System.out.println("\t Modo Administrador");
         System.out.println("\n");
         System.out.println("\t Menu");
-        System.out.println("Seleccione una opcion:");
         System.out.println("1. Agregar un juego");
         System.out.println("2. Imprimir Juegos.");
         System.out.println("3. Eliminar un juego por el nombre");
         System.out.println("4. Hacer conexiones");
-        System.out.println("4. Salir");
-        int dato=ingreso.nextInt();
+        System.out.println("5. Salir");
+        int dato=leerInt("Seleccione una opcion:", 1, 5);
         return dato;       
     }
-     
-       public static int menucliente()
-    {
- 
-        //Menu de administrador para agregar juegos.
-        Scanner ingreso=new Scanner(System.in);
-        System.out.println("\t Modo Cliente");
-        System.out.println("\n");
-        System.out.println("\t Menu");
-        System.out.println("Seleccione una opcion:");
-        System.out.println("1. Buscar 3 juegos por diversión ");
-        System.out.println("2. Optimizar juegos por precio ");
-        System.out.println("3. Salir");
-        int dato=ingreso.nextInt();
-        return dato;         
-    }
-  public static int menu()
-    {
- 
-        //Menu de administrador para agregar juegos.
-        Scanner ingreso=new Scanner(System.in);
-        System.out.println("\t Menu");
-        System.out.println("Seleccione una opcion:");
-        System.out.println("1. Administrador ");
-        System.out.println("2. Cliente ");
-        System.out.println("3. Salir");
-        int dato=ingreso.nextInt();
-        return dato;         
-    }    
-       
-    
+  
     public static void main(String[] args) {
         // TODO code application logic here
         //
@@ -116,21 +78,13 @@ public class PlayZoneAdmin {
                 
         int opcion;
         int opcion2;
-        int opcion3;
         
         opcion2=menuAdmin();
         switch(opcion2)
         {
             case 1: 
                 Juego j1 =new Juego();
-                                    
-                j1.setNombre(leerString("Inserte el nombre"));
-                j1.setPrecio(leerDouble("Ingrese el precio del juego", 5, 50));
-                j1.setIndiceDiversion(leerInt("Ingrese indice de diversion", 1, 5));
-                coleccion.agregarMedio(j1, coleccion.BuscarNombre(leerString("Ingrese el juego siguiente ")));
-                coleccion.JuegoRepetido(j1);
-                                    
-                //diversion.Ordenar(j1);
+                
             break;
 
             case 2: 
@@ -138,7 +92,7 @@ public class PlayZoneAdmin {
             break;
 
             case 3:
-                coleccion.eliminarNodo(leerString("Ingrese el nombre a eliminar "));
+                
             break;
 
             case 4:
@@ -146,7 +100,6 @@ public class PlayZoneAdmin {
                 coleccion.ImprimirLista();
                 int ndo;
                 ndo=x.nextInt();
-                int opcion4;
 
                 do{
                     coleccion.ImprimirLista();
