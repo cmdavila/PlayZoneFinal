@@ -63,20 +63,17 @@ public class PlayZoneAdmin {
         Juego dos=new Juego("Dos", 1.5, 2);
         Juego tres=new Juego("Tres", 2.5, 1);
         Juego cuatro=new Juego("Cuatro", 3.5, 5);
-        Juego cinco=new Juego("Cinco", 0.5, 6);
-        Juego seis=new Juego("Seis", 1.5, 7);
-        Juego siete=new Juego("Siete", 2.5, 4);
-        Juego ocho=new Juego("Ocho", 3.5, 8);
+//         
         
                 
         coleccion.AgregarJuego(uno);       
         coleccion.AgregarJuego(dos);
         coleccion.AgregarJuego(tres);       
         coleccion.AgregarJuego(cuatro);
-        coleccion.AgregarJuego(cinco);       
-        coleccion.AgregarJuego(seis);
-        coleccion.AgregarJuego(siete);       
-        coleccion.AgregarJuego(ocho);
+//        coleccion.AgregarJuego(cinco);       
+//        coleccion.AgregarJuego(seis);
+//        coleccion.AgregarJuego(siete);       
+//        coleccion.AgregarJuego(ocho);
         
                 
         int opcion2;
@@ -94,7 +91,8 @@ public class PlayZoneAdmin {
             break;
 
             case 3:
-                Lista elMejor=coleccion.mejorRecorrido(opcion2);
+                double dinero=leerDouble("Ingrese el dinero que posee: ", 1, 100);
+                Lista elMejor=coleccion.mejorRecorrido(dinero);
                 elMejor.imprimirLista();
             break;
 
