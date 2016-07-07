@@ -14,10 +14,6 @@ public class Juego {
     private String Nombre;
     private double Precio;
     private int indiceDiversion;
-
-    public Juego() {
-    }
-
     
     //Metodo constructor
     public Juego(String Nombre, double Precio, int indiceDiversion) {
