@@ -31,6 +31,8 @@ public class Mapa extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jCPanel1 = new com.bolivia.panel.JCPanel();
         Teatro = new javax.swing.JPanel();
+        globo = new javax.swing.JPanel();
+        Carrusel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,28 +44,66 @@ public class Mapa extends javax.swing.JFrame {
         Teatro.setLayout(TeatroLayout);
         TeatroLayout.setHorizontalGroup(
             TeatroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 78, Short.MAX_VALUE)
         );
         TeatroLayout.setVerticalGroup(
             TeatroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 49, Short.MAX_VALUE)
+        );
+
+        globo.setOpaque(false);
+
+        javax.swing.GroupLayout globoLayout = new javax.swing.GroupLayout(globo);
+        globo.setLayout(globoLayout);
+        globoLayout.setHorizontalGroup(
+            globoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 57, Short.MAX_VALUE)
+        );
+        globoLayout.setVerticalGroup(
+            globoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 92, Short.MAX_VALUE)
+        );
+
+        Carrusel.setOpaque(false);
+
+        javax.swing.GroupLayout CarruselLayout = new javax.swing.GroupLayout(Carrusel);
+        Carrusel.setLayout(CarruselLayout);
+        CarruselLayout.setHorizontalGroup(
+            CarruselLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 75, Short.MAX_VALUE)
+        );
+        CarruselLayout.setVerticalGroup(
+            CarruselLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 73, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jCPanel1Layout = new javax.swing.GroupLayout(jCPanel1);
         jCPanel1.setLayout(jCPanel1Layout);
         jCPanel1Layout.setHorizontalGroup(
             jCPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jCPanel1Layout.createSequentialGroup()
-                .addContainerGap(586, Short.MAX_VALUE)
-                .addComponent(Teatro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+            .addGroup(jCPanel1Layout.createSequentialGroup()
+                .addContainerGap(525, Short.MAX_VALUE)
+                .addGroup(jCPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jCPanel1Layout.createSequentialGroup()
+                        .addComponent(Teatro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jCPanel1Layout.createSequentialGroup()
+                        .addComponent(Carrusel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jCPanel1Layout.createSequentialGroup()
+                        .addComponent(globo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125))))
         );
         jCPanel1Layout.setVerticalGroup(
             jCPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jCPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(61, 61, 61)
                 .addComponent(Teatro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(Carrusel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(globo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -96,12 +136,25 @@ public class Mapa extends javax.swing.JFrame {
      */
 
     
-    public void AgregarNoo(NodoGrafo agregar){
+    public void AgregarNoo(NodoGrafo agregar, String var){
+        switch (var){
+            case "Teatro":
+                Teatro.add(this, agregar);
+                break;
+            case "Carrusel":
+                Carrusel.add(this, var);
+                break;
+            case "Globo":
+                globo.add(this, var);
+                break;
+        }
         
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Carrusel;
     private javax.swing.JPanel Teatro;
+    private javax.swing.JPanel globo;
     private com.bolivia.panel.JCPanel jCPanel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
