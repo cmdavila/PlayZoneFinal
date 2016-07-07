@@ -13,6 +13,7 @@ public class Grafo {
     //Atributos
     private Aristas Inicio;
     private Aristas Fin;
+
     
     //Metodo Constructor
     public Grafo(){
@@ -32,6 +33,7 @@ public class Grafo {
             Fin.setSiguiente(nuevoJuego);//El nuevo nodo se conecta al antiguo final
             Fin=nuevoJuego;//Se cambia el final por el nuevo nodo
         }
+        
     }
 
     //Buscar una arista por su nombre
@@ -121,8 +123,8 @@ public class Grafo {
     }
     
     //Metodo del recorrido mas Optimo
-    private Lista mejorRecorrido(Aristas Camino, double dinero, Lista nueva, Lista aComparar, double sobrante, Aristas Begining){
-        if (Begining!=null){
+    private Lista mejorRecorrido(Aristas Camino, double dinero, Lista nueva, Lista aComparar, double sobrante, Aristas Beginning){
+        if (Beginning!=null){
             if (Camino!=null){
                 if (sobrante<Camino.Adyacentes.precioMenor()){//Reviso si aun tengo dinero para la proxima atraccion
                     if(nueva.indiceDiversion()>aComparar.indiceDiversion()){//Comparo la lista guarda como "optima" y la comparo con la nueva
@@ -134,11 +136,11 @@ public class Grafo {
                 Camino.Adyacentes.DesencolarPriori();
                 nueva.AgregarNodo(Camino);//Se agrega el Juego a la lista nueva
                 sobrante=sobrante-Camino.getDato().getPrecio();//Se resta el dinero del juego
-                mejorRecorrido(Camino.Adyacentes.DesencolarPriori(), dinero, nueva, aComparar, sobrante, Begining);//Paso al siguiente juego de los adyacentes
+                mejorRecorrido(Camino.Adyacentes.DesencolarPriori(), dinero, nueva, aComparar, sobrante, Beginning);//Paso al siguiente juego de los adyacentes
                 
             }        
             
-            mejorRecorrido(Begining.getSiguiente().Adyacentes.Inicio, dinero, new Lista(), aComparar, dinero, Begining.getSiguiente());//Paso al siguiente juego del grafo
+            mejorRecorrido(Beginning.getSiguiente().Adyacentes.Inicio, dinero, new Lista(), aComparar, dinero, Beginning.getSiguiente());//Paso al siguiente juego del grafo
         }
         
         return aComparar;

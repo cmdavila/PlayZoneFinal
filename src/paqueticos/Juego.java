@@ -15,6 +15,7 @@ public class Juego {
     private double Precio;
     private int indiceDiversion;
     
+    
     //Metodo constructor
     public Juego(String Nombre, double Precio, int indiceDiversion) {
         this.Nombre = Nombre;
@@ -45,6 +46,29 @@ public class Juego {
 
     public void setIndiceDiversion(int indiceDiversion) {
         this.indiceDiversion = indiceDiversion;
+    }
+    
+    //Metodo para obtener la diversion en palabras
+    public String GetDiversion(){
+        switch(indiceDiversion){
+            case 1:
+                return "nada";
+                                
+            case 2:
+                return "poco";
+                
+            case 3:
+                return "mas o menos";
+                
+            case 4:
+                return "bastante";
+                
+            case 5:
+                return "demasiado";
+                
+            default:
+                return "error";
+        }
     }
     
     

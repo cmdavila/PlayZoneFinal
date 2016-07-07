@@ -55,10 +55,10 @@ public class PlayZoneAdmin {
         // TODO code application logic here
         //
         Grafo coleccion = new Grafo();
-        Mapa m=new Mapa();
-        
-        m.setVisible(true);
-        
+//        Mapa m=new Mapa();
+//        
+//        m.setVisible(true);
+//        
         Juego uno=new Juego("Uno", 0.5, 3);
         Juego dos=new Juego("Dos", 1.5, 2);
         Juego tres=new Juego("Tres", 2.5, 1);
@@ -79,15 +79,14 @@ public class PlayZoneAdmin {
         coleccion.AgregarJuego(ocho);
         
                 
-        int opcion;
         int opcion2;
-        
+        do{
         opcion2=menuAdmin();
         switch(opcion2)
         {
             case 1: 
-                Juego j1 =new Juego();
-                
+                Juego j1 =new Juego(leerString("Inserte el nombre"),leerDouble("Ingrese el precio del juego", 5, 50),leerInt("Ingrese indice de diversion", 1, 5));
+                coleccion.AgregarJuego(j1);
             break;
 
             case 2: 
@@ -95,28 +94,29 @@ public class PlayZoneAdmin {
             break;
 
             case 3:
-                
+                Lista elMejor=coleccion.mejorRecorrido(opcion2);
+                elMejor.imprimirLista();
             break;
 
             case 4:
-                Scanner x=new Scanner(System.in);
                 coleccion.ImprimirLista();
-                int ndo;
-                ndo=x.nextInt();
-
+                int arista;
+                arista=leerInt("", 0, coleccion.NumAristas());
+                
+                int conexion=0;
                 do{
                     coleccion.ImprimirLista();
-                    opcion=x.nextInt();
-                    if(opcion!=ndo){
-                        coleccion.ObtenerJuego(ndo-1).getAdyacentes().AgregarJuego(coleccion.ObtenerJuego(opcion-1).getDato());
-                        coleccion.ObtenerJuego(opcion-1).getAdyacentes().AgregarJuego(coleccion.ObtenerJuego(ndo-1).getDato());
+                    System.out.println("Presione 0 para salir");
+                    conexion=leerInt("Ingrese el arista a la cual quiere", 0, coleccion.NumAristas());
+                    if(conexion!=arista){
+                        coleccion.ObtenerJuego(arista-1).getAdyacentes().AgregarJuego(coleccion.ObtenerJuego(conexion-1).getDato());
                     }
 
-                }while(opcion!=ndo);
+                }while(conexion!=0);
                 System.out.println("");
-                coleccion.ObtenerJuego(ndo-1).getAdyacentes().ImprimirLista();
+                coleccion.ObtenerJuego(arista-1).getAdyacentes().ImprimirLista();
         }
-            
+        }while(opcion2!=5);    
     }
 
 

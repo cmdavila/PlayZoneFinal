@@ -62,6 +62,16 @@ public class Lista {
     public int indiceDiversion(){
         return indiceDiversion(Inicio, 0);
     }
+
+    public void imprimirLista() {
+        NodoLista aux=Inicio;
+        
+        do{
+            System.out.println("Usted ha jugado: " + aux.getJuego().getNombre() + " y se ha divertido " + aux.getJuego().GetDiversion() + " y gasto " + aux.getJuego().getPrecio());
+            aux=aux.getSiguiente();
+        }while(aux!=null);
+        
+    }
     
     
 
