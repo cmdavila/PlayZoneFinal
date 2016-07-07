@@ -59,24 +59,24 @@ public class PlayZoneAdmin {
         
         m.setVisible(true);
         
-        Juego uno=new Juego("Uno", 0.5, 3);
-        Juego dos=new Juego("Dos", 1.5, 2);
-        Juego tres=new Juego("Tres", 2.5, 1);
-        Juego cuatro=new Juego("Cuatro", 3.5, 5);
-        Juego cinco=new Juego("Cinco", 0.5, 6);
-        Juego seis=new Juego("Seis", 1.5, 7);
-        Juego siete=new Juego("Siete", 2.5, 4);
-        Juego ocho=new Juego("Ocho", 3.5, 8);
-        
-                
-        coleccion.AgregarJuego(uno);       
-        coleccion.AgregarJuego(dos);
-        coleccion.AgregarJuego(tres);       
-        coleccion.AgregarJuego(cuatro);
-        coleccion.AgregarJuego(cinco);       
-        coleccion.AgregarJuego(seis);
-        coleccion.AgregarJuego(siete);       
-        coleccion.AgregarJuego(ocho);
+//        Juego uno=new Juego("Uno", 0.5, 3);
+//        Juego dos=new Juego("Dos", 1.5, 2);
+//        Juego tres=new Juego("Tres", 2.5, 1);
+//        Juego cuatro=new Juego("Cuatro", 3.5, 5);
+//        Juego cinco=new Juego("Cinco", 0.5, 6);
+//        Juego seis=new Juego("Seis", 1.5, 7);
+//        Juego siete=new Juego("Siete", 2.5, 4);
+//        Juego ocho=new Juego("Ocho", 3.5, 8);
+//        
+//                
+//        coleccion.AgregarJuego(uno);       
+//        coleccion.AgregarJuego(dos);
+//        coleccion.AgregarJuego(tres);       
+//        coleccion.AgregarJuego(cuatro);
+//        coleccion.AgregarJuego(cinco);       
+//        coleccion.AgregarJuego(seis);
+//        coleccion.AgregarJuego(siete);       
+//        coleccion.AgregarJuego(ocho);
         
                 
         int opcion;
@@ -86,8 +86,8 @@ public class PlayZoneAdmin {
         switch(opcion2)
         {
             case 1: 
-                Juego j1 =new Juego();
-                
+                Juego j1 =new Juego(leerString("Inserte el nombre"),leerDouble("Ingrese el precio del juego", 5, 50),leerInt("Ingrese indice de diversion", 1, 5));
+                coleccion.AgregarJuego(j1);
             break;
 
             case 2: 

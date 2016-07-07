@@ -11,6 +11,7 @@ package paqueticos;
  */
 public class Grafo {
     //Atributos
+    private Mapa punto;
     private NodoGrafo Inicio;
     private NodoGrafo Fin;
     
@@ -32,6 +33,7 @@ public class Grafo {
             Fin.setSiguiente(nuevoJuego);//El nuevo nodo se conecta al antiguo final
             Fin=nuevoJuego;//Se cambia el final por el nuevo nodo
         }
+        punto.AgregarNodo(nuevoJuego, nuevoJuego.getDato().getNombre());
     }
 
     //Buscar una arista por su nombre
