@@ -9,6 +9,6 @@ package paqueticos;
  *
  * @author Carlitox
  */
-public class Lista {
+public class NodoLista {
     
 }

@@ -54,7 +54,7 @@ public class PlayZoneAdmin {
         System.out.println("1. Agregar un juego");
         System.out.println("2. Imprimir Juegos.");
         System.out.println("3. Eliminar un juego por el nombre");
-        System.out.println("4. Hacer conecciones");
+        System.out.println("4. Hacer conexiones");
         System.out.println("4. Salir");
         int dato=ingreso.nextInt();
         return dato;       
@@ -92,12 +92,10 @@ public class PlayZoneAdmin {
     
     public static void main(String[] args) {
         // TODO code application logic here
+        //
+        Grafo coleccion = new Grafo();
         
-        Lista coleccion = new Lista();
-        Lista diversion =new Lista();
-        Lista auxiliar=new Lista();
-        auxiliar=coleccion;
-              Juego uno=new Juego("Uno", 0.5, 3);
+        Juego uno=new Juego("Uno", 0.5, 3);
         Juego dos=new Juego("Dos", 1.5, 2);
         Juego tres=new Juego("Tres", 2.5, 1);
         Juego cuatro=new Juego("Cuatro", 3.5, 5);
@@ -111,112 +109,62 @@ public class PlayZoneAdmin {
         coleccion.AgregarJuego(dos);
         coleccion.AgregarJuego(tres);       
         coleccion.AgregarJuego(cuatro);
-                coleccion.AgregarJuego(cinco);       
+        coleccion.AgregarJuego(cinco);       
         coleccion.AgregarJuego(seis);
-                coleccion.AgregarJuego(siete);       
+        coleccion.AgregarJuego(siete);       
         coleccion.AgregarJuego(ocho);
         
                 
         int opcion;
         int opcion2;
         int opcion3;
-        do{
-        opcion=menu();
-                if(opcion==1)
-                {
-                    do{
-                        opcion2=menuAdmin();
-                            switch(opcion2)
-                            {
-                                case 1: 
-                                    Juego j1 =new Juego();
+        
+        opcion2=menuAdmin();
+        switch(opcion2)
+        {
+            case 1: 
+                Juego j1 =new Juego();
                                     
-                                    j1.setNombre(leerString("Inserte el nombre"));
-                                    j1.setPrecio(leerDouble("Ingrese el precio del juego", 5, 50));
-                                    j1.setIndiceDiversion(leerInt("Ingrese indice de diversion", 1, 5));
-                                    coleccion.agregarMedio(j1, coleccion.BuscarNombre(leerString("Ingrese el juego siguiente ")));
-                                    coleccion.JuegoRepetido(j1);
+                j1.setNombre(leerString("Inserte el nombre"));
+                j1.setPrecio(leerDouble("Ingrese el precio del juego", 5, 50));
+                j1.setIndiceDiversion(leerInt("Ingrese indice de diversion", 1, 5));
+                coleccion.agregarMedio(j1, coleccion.BuscarNombre(leerString("Ingrese el juego siguiente ")));
+                coleccion.JuegoRepetido(j1);
                                     
-                                    //diversion.Ordenar(j1);
-                                break;
+                //diversion.Ordenar(j1);
+            break;
 
-                                    case 2: 
-                                        coleccion.ImprimirLista();
+            case 2: 
+                coleccion.ImprimirLista();
+            break;
 
-                                    break;
+            case 3:
+                coleccion.eliminarNodo(leerString("Ingrese el nombre a eliminar "));
+            break;
 
-                                    case 3:
-                                        coleccion.eliminarNodo(leerString("Ingrese el nombre a eliminar "));
-                                        break;
+            case 4:
+                Scanner x=new Scanner(System.in);
+                coleccion.ImprimirLista();
+                int ndo;
+                ndo=x.nextInt();
+                int opcion4;
 
-                                case 4:
-                                    Scanner x=new Scanner(System.in);
-                                    coleccion.ImprimirLista();
-                                        int ndo;
-                                        ndo=x.nextInt();
-                                        int opcion4;
+                do{
+                    coleccion.ImprimirLista();
+                    opcion=x.nextInt();
+                    if(opcion!=ndo){
+                        coleccion.ObtenerJuego(ndo-1).getAdyacentes().AgregarJuego(coleccion.ObtenerJuego(opcion-1).getDato());
+                        coleccion.ObtenerJuego(opcion-1).getAdyacentes().AgregarJuego(coleccion.ObtenerJuego(ndo-1).getDato());
+                    }
 
-                                        do{
-                                            coleccion.ImprimirLista();
-                                            opcion=x.nextInt();
-                                            if(opcion!=ndo){
-                                                coleccion.ObtenerJuego(ndo-1).getAdyacentes().AgregarJuego(coleccion.ObtenerJuego(opcion-1).getDato());
-                                                coleccion.ObtenerJuego(opcion-1).getAdyacentes().AgregarJuego(coleccion.ObtenerJuego(ndo-1).getDato());
-                                            }
-
-                                        }while(opcion!=ndo);
-                                        System.out.println("");
-                                        coleccion.ObtenerJuego(ndo-1).getAdyacentes().ImprimirLista();
-                            }
-                    }while(opcion2<5);
-                }
-                else if (opcion==2){ 
-                    
-                        do{
-                        opcion3=menucliente();
-                                switch(opcion3)
-                                {
-                                    case 1: 
-                                        Cliente a=new Cliente(leerDouble("Ingrese el total de dinero que posee",5,50));
-                                        coleccion.ObtenerTamanio();
-                                        int numero = leerInt("Ingrese la posicion en la que se encuentra",0,coleccion.ObtenerTamanio());
-                                        while(coleccion.dineroDisponible(a,numero)>=0){
-                                            auxiliar.AgregarJuego(coleccion.ObtenerJuego(numero).getDato());
-                                            
-                                        }
-                                        
-                                    break;
-
-                                    case 2: 
-                                        System.out.println("Los juegos que se puede jugar antes de que se acabe el dinero son: ");
-                                        auxiliar.ImprimirLista();
-                                    break;
-
-
-                                    case 3:
-                                        Scanner br = new Scanner (System.in);
-                                        coleccion.ImprimirLista();
-                                        
-                                        int ir=br.nextInt();
-                                        coleccion.ObtenerJuego(ir-1).getAdyacentes().ImprimirLista();
-                                        ir=br.nextInt();
-                                        do{
-                                            int ant=ir;
-                                            coleccion.ObtenerJuego(ir-1).getAdyacentes().ImprimirLista();
-                                            ir=br.nextInt();
-                                            coleccion.ObtenerJuego(ant-1).getAdyacentes().ObtenerJuego(ir-1);
-
-
-                                        }while(ir!=0);
-                                        break;
-
-                                }
-                        }while(opcion3<3);
-            
-                }  
-                
-            }while(opcion<3);
-
+                }while(opcion!=ndo);
+                System.out.println("");
+                coleccion.ObtenerJuego(ndo-1).getAdyacentes().ImprimirLista();
         }
+            
     }
+
+
+}
+
     
