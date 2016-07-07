@@ -55,6 +55,9 @@ public class PlayZoneAdmin {
         // TODO code application logic here
         //
         Grafo coleccion = new Grafo();
+        Mapa m=new Mapa();
+        
+        m.setVisible(true);
         
         Juego uno=new Juego("Uno", 0.5, 3);
         Juego dos=new Juego("Dos", 1.5, 2);
