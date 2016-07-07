@@ -19,6 +19,7 @@ public class Grafo {
         Inicio=Fin=null;
     }
     
+    //Agregar una nueva arista al grafo
     public void AgregarJuego(Juego nuevo){
         NodoGrafo nuevoJuego=new NodoGrafo(nuevo, null);
                 
@@ -33,6 +34,7 @@ public class Grafo {
         }
     }
 
+    //Buscar una arista por su nombre
     public NodoGrafo BuscarNombre(String dato){
      //Creamos auxiliar apuntando al primer nodo de la lista
         NodoGrafo aux=Inicio;
@@ -127,9 +129,13 @@ public class Grafo {
                         aComparar=nueva;
                     }                    
                 }
+                
+                //Codigo para coger el juego siguiente
+                Camino.Adyacentes.DesencolarPriori();
                 nueva.AgregarNodo(Camino);//Se agrega el Juego a la lista nueva
                 sobrante=sobrante-Camino.getDato().getPrecio();//Se resta el dinero del juego
-                mejorRecorrido(Camino.getSiguiente(), dinero, nueva, aComparar, sobrante, Begining);//Paso al siguiente juego de los adyacentes
+                mejorRecorrido(Camino.Adyacentes.DesencolarPriori(), dinero, nueva, aComparar, sobrante, Begining);//Paso al siguiente juego de los adyacentes
+                
             }        
             
             mejorRecorrido(Begining.getSiguiente().Adyacentes.Inicio, dinero, new Lista(), aComparar, dinero, Begining.getSiguiente());//Paso al siguiente juego del grafo
@@ -141,6 +147,29 @@ public class Grafo {
     
     public Lista mejorRecorrido(double dinero){
         return mejorRecorrido(Inicio.Adyacentes.Inicio, dinero, new Lista(), new Lista(), dinero, Inicio);
+    }
+    
+    //Encontrar el nodo mas conveniente
+    public NodoGrafo DesencolarPriori(){
+        NodoGrafo aux=Inicio;
+        do{
+            if (aux.getDato().getIndiceDiversion()>=getMaxFun())//Condicion para encontrar el juego mas divertido disponible
+                return new NodoGrafo(aux.getDato());//Regresa el primer nodo que encuentre con diversion mayor o igual al maximo
+            aux=aux.getSiguiente();//Pasa al siguiente nodo de la cola
+        }while(aux!=null);//Cerrar el ciclo do-while
+        return null;//Solo llega a esta sentencia si algo sale mal
+    }
+    
+    //Metodo para encontrar el indice de diversion maximo
+    public int getMaxFun(){
+        NodoGrafo aux=Inicio;
+        int cont=0;
+        while(aux!=null){
+            if (cont<aux.getDato().getIndiceDiversion())
+                cont=aux.getDato().getIndiceDiversion();
+            aux=aux.getSiguiente();
+        }
+        return cont;
     }
     
 }
