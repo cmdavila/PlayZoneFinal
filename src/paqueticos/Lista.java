@@ -19,7 +19,7 @@ public class Lista {
         Inicio=Final;
     }
     
-    public void AgregarNodo(NodoGrafo Juego){
+    public void AgregarNodo(Aristas Juego){
         NodoLista nuevo=new NodoLista(Juego.getDato());
         
         if(Inicio==Final&&Final==null){//Agrega el primer elemento

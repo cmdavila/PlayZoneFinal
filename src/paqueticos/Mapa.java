@@ -136,7 +136,7 @@ public class Mapa extends javax.swing.JFrame {
      */
 
     
-    public void AgregarNoo(NodoGrafo agregar, String var){
+    public void AgregarNoo(Aristas agregar, String var){
         switch (var){
             case "Teatro":
                 Teatro.add(this, agregar);

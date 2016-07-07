@@ -11,8 +11,8 @@ package paqueticos;
  */
 public class Grafo {
     //Atributos
-    private NodoGrafo Inicio;
-    private NodoGrafo Fin;
+    private Aristas Inicio;
+    private Aristas Fin;
     
     //Metodo Constructor
     public Grafo(){
@@ -21,7 +21,7 @@ public class Grafo {
     
     //Agregar una nueva arista al grafo
     public void AgregarJuego(Juego nuevo){
-        NodoGrafo nuevoJuego=new NodoGrafo(nuevo, null);
+        Aristas nuevoJuego=new Aristas(nuevo, null);
                 
         if(Inicio==Fin&&Fin==null){//Agrega el primer elemento
             Inicio=Fin=nuevoJuego;//Se inicializa el contenido del primer elemento
@@ -35,11 +35,11 @@ public class Grafo {
     }
 
     //Buscar una arista por su nombre
-    public NodoGrafo BuscarNombre(String dato){
+    public Aristas BuscarNombre(String dato){
      //Creamos auxiliar apuntando al primer nodo de la lista
-        NodoGrafo aux=Inicio;
+        Aristas aux=Inicio;
         // inicializamos una variable tipo nodo para retornar
-        NodoGrafo retorno = null;
+        Aristas retorno = null;
         while(aux!=null){           
             if(aux.getDato().getNombre().equals(dato)){//comparamos el nombre obtenido con el nombre del nodo
                 retorno = aux;
@@ -54,7 +54,7 @@ public class Grafo {
     //Metodo para obtener el numero de aristas del grafo
     public int NumAristas(){
         int cont=0;
-        NodoGrafo aux=Inicio;
+        Aristas aux=Inicio;
         
         //Ciclo para contar los elementos de la lista
         do {
@@ -66,8 +66,8 @@ public class Grafo {
     }
     
     //Metodo para obtener el juego de un lugar especifico de la lista
-    public NodoGrafo ObtenerJuego(int posicion){
-        NodoGrafo aux=Inicio;
+    public Aristas ObtenerJuego(int posicion){
+        Aristas aux=Inicio;
         
         //Si el numero solicitado es mayor al tamanio de la lista
         if (posicion>NumAristas()){
@@ -84,7 +84,7 @@ public class Grafo {
     }
     
     //Metodo que obtiene el valor mas economico de un juego adyacente
-    private double precioMenor(NodoGrafo aux, double menor){
+    private double precioMenor(Aristas aux, double menor){
         if(aux!=null){
             if(aux.getDato().getPrecio()<menor){
                 menor=aux.getDato().getPrecio();
@@ -108,7 +108,7 @@ public class Grafo {
             System.out.println("No existen aristas en el grafo");
         }
         
-        NodoGrafo aux=Inicio;//Inicializar el contador
+        Aristas aux=Inicio;//Inicializar el contador
         
         //Imprimir los elementos de la lista con un indice para posteriormente escogerlo
         for(int i=0; i<NumAristas(); i++){
@@ -121,7 +121,7 @@ public class Grafo {
     }
     
     //Metodo del recorrido mas Optimo
-    private Lista mejorRecorrido(NodoGrafo Camino, double dinero, Lista nueva, Lista aComparar, double sobrante, NodoGrafo Begining){
+    private Lista mejorRecorrido(Aristas Camino, double dinero, Lista nueva, Lista aComparar, double sobrante, Aristas Begining){
         if (Begining!=null){
             if (Camino!=null){
                 if (sobrante<Camino.Adyacentes.precioMenor()){//Reviso si aun tengo dinero para la proxima atraccion
@@ -150,11 +150,11 @@ public class Grafo {
     }
     
     //Encontrar el nodo mas conveniente
-    public NodoGrafo DesencolarPriori(){
-        NodoGrafo aux=Inicio;
+    public Aristas DesencolarPriori(){
+        Aristas aux=Inicio;
         do{
             if (aux.getDato().getIndiceDiversion()>=getMaxFun())//Condicion para encontrar el juego mas divertido disponible
-                return new NodoGrafo(aux.getDato());//Regresa el primer nodo que encuentre con diversion mayor o igual al maximo
+                return new Aristas(aux.getDato());//Regresa el primer nodo que encuentre con diversion mayor o igual al maximo
             aux=aux.getSiguiente();//Pasa al siguiente nodo de la cola
         }while(aux!=null);//Cerrar el ciclo do-while
         return null;//Solo llega a esta sentencia si algo sale mal
@@ -162,7 +162,7 @@ public class Grafo {
     
     //Metodo para encontrar el indice de diversion maximo
     public int getMaxFun(){
-        NodoGrafo aux=Inicio;
+        Aristas aux=Inicio;
         int cont=0;
         while(aux!=null){
             if (cont<aux.getDato().getIndiceDiversion())

@@ -9,29 +9,29 @@ package paqueticos;
  *
  * @author Carlitox
  */
-public class NodoGrafo {
+public class Aristas {
     //Atributos de nodo con doble referencia
     //Agregar distancia entre los juegos no se si aun es en esta clase o en juego o en lista
-    private NodoGrafo Siguiente;
+    private Aristas Siguiente;
     private Juego Dato;
     public Grafo Adyacentes; //Lista de juegos cercanos o a los que se puede ir
     
     //Metodo constructor
-    public NodoGrafo(Juego Dato, NodoGrafo Siguiente) {
+    public Aristas(Juego Dato, Aristas Siguiente) {
         this.Dato = Dato;//
         this.Siguiente=Siguiente;
         Adyacentes=new Grafo();//Se inicializa la lista de juegos cercanos
     }
 
 
-    public NodoGrafo(Juego Dato) {
+    public Aristas(Juego Dato) {
         this.Dato = Dato;
         Siguiente=null;
     }
         
 
     //Metodos get y set
-    public NodoGrafo getSiguiente() {
+    public Aristas getSiguiente() {
         return Siguiente;
     }
 
@@ -43,7 +43,7 @@ public class NodoGrafo {
         return Adyacentes;
     }
 
-    public void setSiguiente(NodoGrafo Siguiente) {
+    public void setSiguiente(Aristas Siguiente) {
         this.Siguiente = Siguiente;
     }
 
